@@ -1,0 +1,230 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* HUD Colors - Neon Green Theme */
+  --hud-bg: #0a0a0a;
+  --hud-bg-secondary: #111111;
+  --hud-accent: #00ff41;
+  --hud-accent-dim: #00cc33;
+  --hud-accent-glow: rgba(0, 255, 65, 0.3);
+  --hud-text: #e0e0e0;
+  --hud-text-dim: #888888;
+  --hud-border: #1a1a1a;
+  --hud-border-accent: #00ff41;
+  --hud-danger: #ff3333;
+  --hud-warning: #ffaa00;
+  --hud-cyan: #00ffff;
+  
+  /* Design tokens */
+  --background: #0a0a0a;
+  --foreground: #e0e0e0;
+  --card: #111111;
+  --card-foreground: #e0e0e0;
+  --popover: #111111;
+  --popover-foreground: #e0e0e0;
+  --primary: #00ff41;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #e0e0e0;
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
+  --accent: #00ff41;
+  --accent-foreground: #0a0a0a;
+  --destructive: #ff3333;
+  --destructive-foreground: #ffffff;
+  --border: #1a1a1a;
+  --input: #1a1a1a;
+  --ring: #00ff41;
+  --radius: 0.25rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-pixel: var(--font-pixel), monospace;
+  --font-terminal: var(--font-terminal), monospace;
+  
+  --color-hud-bg: var(--hud-bg);
+  --color-hud-bg-secondary: var(--hud-bg-secondary);
+  --color-hud-accent: var(--hud-accent);
+  --color-hud-accent-dim: var(--hud-accent-dim);
+  --color-hud-text: var(--hud-text);
+  --color-hud-text-dim: var(--hud-text-dim);
+  --color-hud-border: var(--hud-border);
+  --color-hud-border-accent: var(--hud-border-accent);
+  --color-hud-danger: var(--hud-danger);
+  --color-hud-warning: var(--hud-warning);
+  --color-hud-cyan: var(--hud-cyan);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-hud-bg text-hud-text;
+  }
+}
+
+/* CRT Scanline Effect */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  opacity: 0.15;
+}
+
+/* Pixel border effect */
+.pixel-border {
+  border: 2px solid var(--hud-border);
+  box-shadow: 
+    inset 0 0 0 1px var(--hud-border),
+    0 0 0 1px var(--hud-bg);
+}
+
+.pixel-border-accent {
+  border: 2px solid var(--hud-accent);
+  box-shadow: 
+    0 0 10px var(--hud-accent-glow),
+    inset 0 0 0 1px var(--hud-accent);
+}
+
+/* Neon glow effects */
+.neon-glow {
+  text-shadow: 
+    0 0 5px var(--hud-accent),
+    0 0 10px var(--hud-accent),
+    0 0 20px var(--hud-accent-glow);
+}
+
+.neon-box-glow {
+  box-shadow: 
+    0 0 5px var(--hud-accent),
+    0 0 10px var(--hud-accent-glow),
+    0 0 20px var(--hud-accent-glow);
+}
+
+/* Typewriter cursor */
+.typewriter-cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Skill bar animation */
+@keyframes fillBar {
+  from { width: 0%; }
+}
+
+.skill-bar-fill {
+  animation: fillBar 1s ease-out forwards;
+}
+
+/* Grid background */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Pixel transition keyframes */
+@keyframes pixelFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.pixel-fade-in {
+  animation: pixelFadeIn 0.3s ease-out forwards;
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-appear {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--hud-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--hud-border);
+  border: 1px solid var(--hud-accent-dim);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hud-accent-dim);
+}
+
+/* Focus styles for accessibility */
+.focus-hud:focus {
+  outline: 2px solid var(--hud-accent);
+  outline-offset: 2px;
+}
+
+.focus-hud:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.focus-hud:focus-visible {
+  outline: 2px solid var(--hud-accent);
+  outline-offset: 2px;
+}
