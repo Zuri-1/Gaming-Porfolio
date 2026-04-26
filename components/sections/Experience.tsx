@@ -6,44 +6,47 @@ import { Terminal, ChevronRight } from 'lucide-react'
 const experiences = [
   {
     id: 1,
-    organization: 'TECH_CORPS',
-    role: 'Senior Full-Stack Developer',
-    duration: '2022 - PRESENT',
+    organization: 'EDGE_CENTER',
+    location: 'Rock Island, Illinois',
+    role: 'Web Development Intern',
+    duration: 'Feb 2026 - PRESENT',
     status: 'ACTIVE',
     classification: 'ALPHA',
     description: [
-      'Leading development of mission-critical web applications serving 100k+ users',
-      'Architecting scalable microservices infrastructure on AWS',
-      'Mentoring junior developers and conducting code reviews',
-      'Implementing CI/CD pipelines reducing deployment time by 60%',
+      'Executing hands-on technical projects, applying core development concepts to build functional and well-structured solutions',
+      'Designing and refining digital graphics using Adobe Photoshop, focusing on layout, branding, and visual consistency',
+      'Deploying responsive web pages using HTML and CSS, emphasizing clean design and user-friendly interfaces',
+      'Producing project-based deliverables utilizing modern digital tools and web development workflows',
     ],
   },
   {
     id: 2,
-    organization: 'STARTUP_OPS',
-    role: 'Full-Stack Developer',
-    duration: '2020 - 2022',
+    organization: 'FUSE_MACHINES',
+    location: 'Kathmandu, Nepal',
+    role: 'AI Intern',
+    duration: 'Dec 2025 - Feb 2026',
     status: 'COMPLETED',
     classification: 'BETA',
     description: [
-      'Built and launched SaaS platform from ground zero to 10k users',
-      'Developed real-time collaboration features using WebSockets',
-      'Integrated third-party APIs for payments and analytics',
-      'Optimized database queries improving performance by 40%',
+      'Evaluated AI product features and use cases, assessing viability of ML solutions based on business objectives',
+      'Collaborated with cross-functional teams of engineers and product stakeholders to analyze AI system workflows',
+      'Conducted research on AI applications across 5+ industries, identifying key limitations and performance trade-offs',
+      'Built and evaluated ML workflows using Python, Pandas, and Scikit-learn with real-world datasets',
     ],
   },
   {
     id: 3,
-    organization: 'FREELANCE_UNIT',
-    role: 'Web Developer',
-    duration: '2018 - 2020',
+    organization: 'BUDDHA_TECH',
+    location: 'Kathmandu, Nepal',
+    role: 'Web Developer Intern',
+    duration: 'May 2024 - Aug 2024',
     status: 'COMPLETED',
     classification: 'GAMMA',
     description: [
-      'Delivered 20+ client projects across various industries',
-      'Specialized in responsive design and WordPress development',
-      'Managed client relationships and project timelines',
-      'Built custom e-commerce solutions and landing pages',
+      'Completed full-stack development projects, integrating front-end interfaces with back-end functionality',
+      'Identified and resolved 10+ front-end issues, improving UI performance, responsiveness, and UX',
+      'Contributed to deploying web applications using modern development workflows including version control',
+      'Developed and integrated full-stack features using React, Node.js, Express, and REST APIs',
     ],
   },
 ]
@@ -114,9 +117,14 @@ export function Experience() {
                     <h3 className="font-[family-name:var(--font-terminal)] text-lg text-hud-text">
                       {exp.role}
                     </h3>
-                    <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
-                      {exp.duration}
-                    </span>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
+                        {exp.duration}
+                      </span>
+                      <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-cyan">
+                        {exp.location}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Mission Objectives */}
@@ -140,6 +148,31 @@ export function Experience() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </div>
+
+      {/* Education Section */}
+      <div className="pixel-border bg-hud-bg-secondary/50 p-4">
+        <div className="mb-3 flex items-center gap-2">
+          <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
+            TRAINING_FACILITY:
+          </span>
+        </div>
+        <div className="flex flex-col gap-2">
+          <h4 className="font-[family-name:var(--font-terminal)] text-lg text-hud-text">
+            Bachelor of Arts in Computer Science and Data Science
+          </h4>
+          <div className="flex flex-wrap gap-4">
+            <span className="font-[family-name:var(--font-terminal)] text-sm text-hud-cyan">
+              Augustana College | Rock Island, Illinois
+            </span>
+            <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
+              Expected: May 2027
+            </span>
+          </div>
+          <span className="font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim">
+            Minor: Mathematics
+          </span>
         </div>
       </div>
     </div>

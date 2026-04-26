@@ -6,52 +6,45 @@ import { ExternalLink, Github, Crosshair } from 'lucide-react'
 const projects = [
   {
     id: 1,
-    name: 'OPERATION: E-COMMERCE',
-    codename: 'SHOP_STRIKE',
-    description: 'Full-stack e-commerce platform with real-time inventory management, secure payments, and admin dashboard.',
-    tech: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
-    status: 'DEPLOYED',
+    name: 'OPERATION: ATHLETIC TRACKER',
+    codename: 'SWIPE_IN',
+    description: 'Web-based system to streamline student access to campus recreation facilities with a one-scan automated check-in process. Cloud-backed database for attendance data and facility occupancy tracking.',
+    tech: ['React', 'JavaScript', 'HTML', 'CSS', 'Git', 'GitHub'],
+    status: 'ACTIVE',
     difficulty: 'HARD',
-    github: 'https://github.com',
-    demo: 'https://example.com',
+    github: 'https://github.com/Zuri-1',
+    demo: null,
+    date: 'Feb 2026 - Present',
   },
   {
     id: 2,
-    name: 'MISSION: TASK_COMMANDER',
-    codename: 'TASK_OPS',
-    description: 'Real-time collaborative task management app with drag-and-drop interface and team synchronization.',
-    tech: ['React', 'Socket.io', 'Node.js', 'MongoDB'],
+    name: 'MISSION: OBJECT_DETECTION',
+    codename: 'VISION_OPS',
+    description: 'Python-based automation tool to detect and interact with on-screen targets in real time using computer vision. Implemented object detection using YOLOv5 and OpenCV with automated mouse actions via PyAutoGUI.',
+    tech: ['Python', 'YOLOv5', 'OpenCV', 'PyAutoGUI', 'NumPy'],
     status: 'DEPLOYED',
-    difficulty: 'MEDIUM',
-    github: 'https://github.com',
-    demo: 'https://example.com',
+    difficulty: 'EXTREME',
+    github: 'https://github.com/Zuri-1',
+    demo: null,
+    date: 'Apr 2025 - Jul 2025',
   },
   {
     id: 3,
-    name: 'DIRECTIVE: AI_ASSISTANT',
-    codename: 'NEURAL_NET',
-    description: 'AI-powered chatbot with natural language processing and custom training capabilities.',
-    tech: ['Python', 'OpenAI', 'FastAPI', 'React'],
-    status: 'IN_DEV',
-    difficulty: 'EXTREME',
-    github: 'https://github.com',
-    demo: null,
-  },
-  {
-    id: 4,
-    name: 'PROTOCOL: ANALYTICS_HUB',
-    codename: 'DATA_RECON',
-    description: 'Real-time analytics dashboard with customizable widgets and data visualization.',
-    tech: ['Vue.js', 'D3.js', 'Express', 'Redis'],
+    name: 'DIRECTIVE: SPAM_CLASSIFIER',
+    codename: 'NEURAL_FILTER',
+    description: 'Machine learning pipeline to classify emails as spam or non-spam using NLP techniques. Implemented Decision Tree, Logistic Regression, and KNN models with performance visualization.',
+    tech: ['Python', 'scikit-learn', 'Pandas', 'NumPy', 'Matplotlib'],
     status: 'DEPLOYED',
     difficulty: 'HARD',
-    github: 'https://github.com',
-    demo: 'https://example.com',
+    github: 'https://github.com/Zuri-1',
+    demo: null,
+    date: 'Jan 2025 - May 2025',
   },
 ]
 
 const statusColors = {
   DEPLOYED: 'text-hud-accent',
+  ACTIVE: 'text-hud-cyan',
   IN_DEV: 'text-hud-warning',
   CLASSIFIED: 'text-hud-danger',
 }
@@ -78,7 +71,7 @@ export function Projects() {
       </div>
 
       {/* Mission Cards Grid */}
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -103,9 +96,12 @@ export function Projects() {
 
             {/* Mission Content */}
             <div className="p-4">
-              <h3 className="mb-2 font-[family-name:var(--font-terminal)] text-lg text-hud-text">
+              <h3 className="mb-1 font-[family-name:var(--font-terminal)] text-lg text-hud-text">
                 {project.name}
               </h3>
+              <p className="mb-2 font-[family-name:var(--font-pixel)] text-[9px] text-hud-text-dim">
+                {project.date}
+              </p>
               <p className="mb-4 font-[family-name:var(--font-terminal)] text-sm leading-relaxed text-hud-text-dim">
                 {project.description}
               </p>

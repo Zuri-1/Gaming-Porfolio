@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, FileDown, Mail } from 'lucide-react'
+import { Github, Linkedin, FileDown, Mail, MapPin, GraduationCap } from 'lucide-react'
 
 export function Profile() {
   const [nameText, setNameText] = useState('')
   const [bioText, setBioText] = useState('')
   const [showBio, setShowBio] = useState(false)
 
-  const name = 'PLAYER_ONE'
-  const bio = 'Full-stack developer specializing in building exceptional digital experiences. Passionate about clean code, user-centric design, and pushing the boundaries of web technology.'
+  const name = 'SUJAY TULADHAR'
+  const bio = 'Computer Science & Data Science student at Augustana College with hands-on experience in full-stack development, AI/ML workflows, and building responsive web applications. Passionate about creating innovative solutions and learning new technologies.'
 
   useEffect(() => {
     let index = 0
@@ -22,7 +22,7 @@ export function Profile() {
         clearInterval(interval)
         setShowBio(true)
       }
-    }, 100)
+    }, 80)
     return () => clearInterval(interval)
   }, [])
 
@@ -36,7 +36,7 @@ export function Profile() {
       } else {
         clearInterval(interval)
       }
-    }, 20)
+    }, 15)
     return () => clearInterval(interval)
   }, [showBio])
 
@@ -65,7 +65,7 @@ export function Profile() {
             {/* Avatar placeholder with scan effect */}
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-hud-accent/20 to-hud-bg-secondary">
               <span className="font-[family-name:var(--font-pixel)] text-4xl text-hud-accent">
-                P1
+                ST
               </span>
             </div>
             {/* Scan line effect */}
@@ -103,7 +103,19 @@ export function Profile() {
               CLASS:
             </div>
             <div className="font-[family-name:var(--font-terminal)] text-xl text-hud-text">
-              Full-Stack Developer
+              Full-Stack Developer & AI Enthusiast
+            </div>
+          </div>
+
+          {/* Location & Education */}
+          <div className="flex flex-wrap gap-4">
+            <div className="flex items-center gap-2 text-hud-text-dim">
+              <MapPin size={14} className="text-hud-accent" />
+              <span className="font-[family-name:var(--font-terminal)] text-sm">Rock Island, IL</span>
+            </div>
+            <div className="flex items-center gap-2 text-hud-text-dim">
+              <GraduationCap size={14} className="text-hud-accent" />
+              <span className="font-[family-name:var(--font-terminal)] text-sm">Augustana College &apos;27</span>
             </div>
           </div>
 
@@ -123,9 +135,9 @@ export function Profile() {
           {/* Stats Row */}
           <div className="grid grid-cols-3 gap-4">
             {[
-              { label: 'LEVEL', value: '25' },
-              { label: 'XP', value: '8,500' },
-              { label: 'RANK', value: 'SR.' },
+              { label: 'DEGREE', value: 'CS/DS' },
+              { label: 'EXP', value: '3+YRS' },
+              { label: 'STATUS', value: 'ACTIVE' },
             ].map((stat) => (
               <motion.div
                 key={stat.label}
@@ -136,7 +148,7 @@ export function Profile() {
                 <div className="font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
                   {stat.label}
                 </div>
-                <div className="font-[family-name:var(--font-terminal)] text-2xl text-hud-accent">
+                <div className="font-[family-name:var(--font-terminal)] text-xl text-hud-accent">
                   {stat.value}
                 </div>
               </motion.div>
@@ -148,9 +160,9 @@ export function Profile() {
       {/* Action Buttons */}
       <div className="mt-auto flex flex-wrap gap-3 border-t border-hud-accent/30 pt-6">
         {[
-          { icon: <Github size={18} />, label: 'GITHUB', href: 'https://github.com' },
-          { icon: <Linkedin size={18} />, label: 'LINKEDIN', href: 'https://linkedin.com' },
-          { icon: <Mail size={18} />, label: 'CONTACT', href: 'mailto:hello@example.com' },
+          { icon: <Github size={18} />, label: 'GITHUB', href: 'https://github.com/Zuri-1' },
+          { icon: <Linkedin size={18} />, label: 'LINKEDIN', href: 'https://www.linkedin.com/in/sujay-tuladhar-1557793' },
+          { icon: <Mail size={18} />, label: 'CONTACT', href: 'mailto:sujaytuladhar23@augustana.edu' },
           { icon: <FileDown size={18} />, label: 'RESUME', href: '#' },
         ].map((action) => (
           <motion.a

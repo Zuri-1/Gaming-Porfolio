@@ -2,24 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { GitCommit, Code2, Clock, Cpu, Activity, Zap } from 'lucide-react'
+import { GitCommit, Code2, Clock, Cpu, Briefcase, Globe } from 'lucide-react'
 
 const stats = [
-  { id: 1, label: 'TOTAL PROJECTS', value: 47, suffix: '', icon: <Code2 size={24} /> },
-  { id: 2, label: 'LANGUAGES KNOWN', value: 12, suffix: '', icon: <Cpu size={24} /> },
-  { id: 3, label: 'YEARS CODING', value: 7, suffix: '+', icon: <Clock size={24} /> },
-  { id: 4, label: 'TECHNOLOGIES', value: 35, suffix: '+', icon: <Zap size={24} /> },
-  { id: 5, label: 'GITHUB COMMITS', value: 2847, suffix: '', icon: <GitCommit size={24} /> },
-  { id: 6, label: 'CUPS OF COFFEE', value: 9999, suffix: '+', icon: <Activity size={24} /> },
+  { id: 1, label: 'TOTAL PROJECTS', value: 5, suffix: '+', icon: <Code2 size={24} /> },
+  { id: 2, label: 'LANGUAGES KNOWN', value: 4, suffix: '', icon: <Cpu size={24} /> },
+  { id: 3, label: 'INTERNSHIPS', value: 3, suffix: '', icon: <Briefcase size={24} /> },
+  { id: 4, label: 'TECHNOLOGIES', value: 20, suffix: '+', icon: <GitCommit size={24} /> },
+  { id: 5, label: 'SPOKEN LANGUAGES', value: 4, suffix: '', icon: <Globe size={24} /> },
+  { id: 6, label: 'YEARS CODING', value: 3, suffix: '+', icon: <Clock size={24} /> },
 ]
 
 const radarData = [
-  { skill: 'Frontend', value: 95 },
-  { skill: 'Backend', value: 88 },
-  { skill: 'DevOps', value: 75 },
-  { skill: 'Database', value: 82 },
-  { skill: 'Mobile', value: 65 },
-  { skill: 'Design', value: 70 },
+  { skill: 'Frontend', value: 88 },
+  { skill: 'Backend', value: 80 },
+  { skill: 'AI/ML', value: 78 },
+  { skill: 'Data', value: 82 },
+  { skill: 'DevOps', value: 70 },
+  { skill: 'Design', value: 75 },
 ]
 
 function AnimatedCounter({ value, duration = 2000 }: { value: number; duration?: number }) {
@@ -195,29 +195,34 @@ export function Stats() {
           <RadarChart />
         </div>
 
-        {/* Activity Graph */}
+        {/* Tech Stack Overview */}
         <div className="pixel-border bg-hud-bg-secondary/50 p-4">
           <div className="mb-4 font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-            WEEKLY_ACTIVITY:
+            TECH_ARSENAL:
           </div>
-          <div className="flex h-40 items-end justify-between gap-2">
-            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => {
-              const height = [65, 80, 45, 90, 75, 30, 55][i]
-              return (
-                <div key={day} className="flex flex-1 flex-col items-center gap-2">
-                  <motion.div
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ delay: i * 0.1, duration: 0.5 }}
-                    className="w-full bg-gradient-to-t from-hud-accent/30 to-hud-accent"
-                    style={{ boxShadow: '0 0 10px rgba(0, 255, 65, 0.3)' }}
-                  />
-                  <span className="font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
-                    {day}
-                  </span>
+          <div className="space-y-3">
+            {[
+              { label: 'Languages', items: ['Python', 'Java', 'JavaScript', 'PHP'] },
+              { label: 'Frameworks', items: ['React', 'Node.js', 'Express'] },
+              { label: 'AI/ML', items: ['PyTorch', 'scikit-learn', 'YOLOv5', 'OpenCV'] },
+              { label: 'Data', items: ['Pandas', 'NumPy', 'Matplotlib', 'Tableau'] },
+            ].map((category) => (
+              <div key={category.label}>
+                <div className="mb-1 font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
+                  {category.label}
                 </div>
-              )
-            })}
+                <div className="flex flex-wrap gap-1">
+                  {category.items.map((item) => (
+                    <span
+                      key={item}
+                      className="border border-hud-accent/30 bg-hud-accent/5 px-2 py-0.5 font-[family-name:var(--font-terminal)] text-xs text-hud-accent"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -229,15 +234,15 @@ export function Stats() {
         </div>
         <div className="space-y-4">
           {[
-            { label: 'NEXT LEVEL', current: 8500, max: 10000 },
-            { label: 'DAILY GOAL', current: 75, max: 100 },
-            { label: 'MONTHLY TARGET', current: 23, max: 30 },
+            { label: 'DEGREE COMPLETION', current: 60, max: 100 },
+            { label: 'FRONTEND MASTERY', current: 88, max: 100 },
+            { label: 'AI/ML PROFICIENCY', current: 78, max: 100 },
           ].map((progress) => (
             <div key={progress.label}>
               <div className="mb-1 flex justify-between font-[family-name:var(--font-pixel)] text-[10px]">
                 <span className="text-hud-text-dim">{progress.label}</span>
                 <span className="text-hud-accent">
-                  {progress.current.toLocaleString()} / {progress.max.toLocaleString()}
+                  {progress.current}%
                 </span>
               </div>
               <div className="h-3 w-full overflow-hidden border border-hud-accent/30 bg-hud-bg">

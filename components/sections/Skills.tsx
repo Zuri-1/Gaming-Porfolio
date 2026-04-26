@@ -10,46 +10,47 @@ const skillCategories = [
     subtitle: 'Languages',
     icon: <Sword size={20} />,
     skills: [
-      { name: 'JavaScript', level: 95, xp: '9,500' },
-      { name: 'TypeScript', level: 90, xp: '9,000' },
-      { name: 'Python', level: 85, xp: '8,500' },
-      { name: 'Java', level: 75, xp: '7,500' },
-      { name: 'SQL', level: 80, xp: '8,000' },
+      { name: 'Python', level: 90, xp: '9,000' },
+      { name: 'JavaScript', level: 85, xp: '8,500' },
+      { name: 'Java', level: 80, xp: '8,000' },
+      { name: 'PHP', level: 70, xp: '7,000' },
+      { name: 'HTML/CSS', level: 90, xp: '9,000' },
     ],
   },
   {
     name: 'SECONDARY LOADOUT',
-    subtitle: 'Frameworks',
+    subtitle: 'Frameworks & Libraries',
     icon: <Shield size={20} />,
     skills: [
-      { name: 'React', level: 95, xp: '9,500' },
-      { name: 'Next.js', level: 90, xp: '9,000' },
-      { name: 'Node.js', level: 88, xp: '8,800' },
-      { name: 'Express', level: 82, xp: '8,200' },
-      { name: 'Tailwind CSS', level: 92, xp: '9,200' },
+      { name: 'React', level: 88, xp: '8,800' },
+      { name: 'Node.js', level: 82, xp: '8,200' },
+      { name: 'OpenCV', level: 78, xp: '7,800' },
+      { name: 'PyTorch', level: 72, xp: '7,200' },
+      { name: 'scikit-learn', level: 80, xp: '8,000' },
+      { name: 'YOLOv5', level: 75, xp: '7,500' },
     ],
   },
   {
     name: 'TACTICAL GEAR',
-    subtitle: 'Tools',
+    subtitle: 'Tools & Tech',
     icon: <Target size={20} />,
     skills: [
-      { name: 'Git', level: 90, xp: '9,000' },
-      { name: 'Docker', level: 78, xp: '7,800' },
-      { name: 'AWS', level: 75, xp: '7,500' },
-      { name: 'Vercel', level: 88, xp: '8,800' },
-      { name: 'Figma', level: 70, xp: '7,000' },
+      { name: 'Git/GitHub', level: 88, xp: '8,800' },
+      { name: 'VS Code', level: 92, xp: '9,200' },
+      { name: 'Tableau', level: 75, xp: '7,500' },
+      { name: 'Microsoft Excel', level: 85, xp: '8,500' },
+      { name: 'Google Colab', level: 82, xp: '8,200' },
     ],
   },
   {
-    name: 'SPECIAL ABILITIES',
-    subtitle: 'Databases',
+    name: 'DATA ARSENAL',
+    subtitle: 'Data & Analytics',
     icon: <Zap size={20} />,
     skills: [
-      { name: 'PostgreSQL', level: 85, xp: '8,500' },
-      { name: 'MongoDB', level: 82, xp: '8,200' },
-      { name: 'Redis', level: 75, xp: '7,500' },
-      { name: 'Supabase', level: 80, xp: '8,000' },
+      { name: 'Pandas', level: 88, xp: '8,800' },
+      { name: 'NumPy', level: 85, xp: '8,500' },
+      { name: 'Matplotlib', level: 80, xp: '8,000' },
+      { name: 'SQL', level: 75, xp: '7,500' },
     ],
   },
 ]
@@ -187,6 +188,23 @@ export function Skills() {
             </div>
           )
         ))}
+      </div>
+
+      {/* Languages Section */}
+      <div className="pixel-border bg-hud-bg-secondary/30 p-4">
+        <div className="mb-3 font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
+          COMMUNICATION_PROTOCOLS:
+        </div>
+        <div className="flex flex-wrap gap-3">
+          {['English', 'Nepali', 'Newari', 'Hindi'].map((lang) => (
+            <span
+              key={lang}
+              className="border border-hud-cyan/30 bg-hud-cyan/5 px-3 py-1 font-[family-name:var(--font-terminal)] text-sm text-hud-cyan"
+            >
+              {lang}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )
