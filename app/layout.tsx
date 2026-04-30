@@ -21,8 +21,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'PLAYER_ONE // Developer Portfolio',
-  description: 'Retro FPS-themed developer portfolio - Navigate through missions, view stats, and explore projects',
+  title: 'Sujay Tuladhar | Developer Portfolio',
+  description: 'Full-stack developer portfolio - Projects, skills, and experience in web development and AI',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport = {
-  themeColor: '#0a0a0a',
+  themeColor: '#000000',
 }
 
 export default function RootLayout({
@@ -53,8 +53,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${pressStart.variable} ${vt323.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased bg-hud-bg">
+    <html lang="en" className={`${pressStart.variable} ${vt323.variable} ${inter.variable} bg-black`}>
+      <body className="font-sans antialiased bg-black">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

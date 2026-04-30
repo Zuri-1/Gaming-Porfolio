@@ -4,15 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Modern Dark + Electric Blue Theme */
-  --hud-bg: #0c1220;
-  --hud-bg-secondary: #141e30;
+  /* Pure Black + Electric Blue Theme */
+  --hud-bg: #000000;
+  --hud-bg-secondary: #0a0a0a;
   --hud-accent: #00d4ff;
   --hud-accent-dim: #0099cc;
   --hud-accent-glow: rgba(0, 212, 255, 0.25);
-  --hud-text: #f0f4f8;
-  --hud-text-dim: #8899aa;
-  --hud-border: #1e3048;
+  --hud-text: #ffffff;
+  --hud-text-dim: #888888;
+  --hud-border: #1a1a1a;
   --hud-border-accent: #00d4ff;
   --hud-danger: #ff4d6a;
   --hud-warning: #ffb84d;
@@ -21,24 +21,24 @@
   --hud-blue: #3b82f6;
   
   /* Design tokens */
-  --background: #0c1220;
-  --foreground: #f0f4f8;
-  --card: #141e30;
-  --card-foreground: #f0f4f8;
-  --popover: #141e30;
-  --popover-foreground: #f0f4f8;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #0a0a0a;
+  --card-foreground: #ffffff;
+  --popover: #0a0a0a;
+  --popover-foreground: #ffffff;
   --primary: #00d4ff;
-  --primary-foreground: #0c1220;
-  --secondary: #1e3048;
-  --secondary-foreground: #f0f4f8;
-  --muted: #1e3048;
-  --muted-foreground: #8899aa;
+  --primary-foreground: #000000;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
   --accent: #00d4ff;
-  --accent-foreground: #0c1220;
+  --accent-foreground: #000000;
   --destructive: #ff4d6a;
   --destructive-foreground: #ffffff;
-  --border: #1e3048;
-  --input: #1e3048;
+  --border: #1a1a1a;
+  --input: #1a1a1a;
   --ring: #00d4ff;
   --radius: 0.5rem;
 }
@@ -91,26 +91,15 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-hud-bg text-hud-text;
+    @apply bg-black text-white;
   }
-}
-
-/* Subtle gradient overlay */
-.gradient-overlay {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(ellipse at top right, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
-              radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
 }
 
 /* Modern card styling */
 .modern-card {
   border: 1px solid var(--hud-border);
-  background: linear-gradient(135deg, var(--hud-bg-secondary) 0%, rgba(20, 30, 48, 0.8) 100%);
+  background: var(--hud-bg-secondary);
   border-radius: var(--radius);
-  backdrop-filter: blur(8px);
 }
 
 .modern-card-accent {
@@ -154,14 +143,6 @@
 
 .skill-bar-fill {
   animation: fillBar 1s ease-out forwards;
-}
-
-/* Subtle grid background */
-.grid-bg {
-  background-image: 
-    linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
 }
 
 /* Smooth fade transition */
@@ -224,6 +205,53 @@
   outline-offset: 2px;
 }
 
+/* Game menu button style */
+.game-menu-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: white;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  border: 2px solid #333;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.game-menu-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  pointer-events: none;
+}
+
+.game-menu-btn:hover {
+  background: linear-gradient(180deg, #00d4ff 0%, #0099cc 100%);
+  border-color: #00d4ff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 20px rgba(0, 212, 255, 0.2);
+  transform: scale(1.02);
+}
+
+.game-menu-btn:hover::before {
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+}
+
+.game-menu-btn.active {
+  background: linear-gradient(180deg, #00d4ff 0%, #0077aa 100%);
+  border-color: #00ffff;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.6), inset 0 0 15px rgba(0, 212, 255, 0.3);
+  color: #000;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 /* Button hover effect */
 .btn-glow {
   transition: all 0.2s ease;
@@ -237,10 +265,4 @@
 /* Progress bar gradient */
 .progress-gradient {
   background: linear-gradient(90deg, var(--hud-accent) 0%, var(--hud-blue) 50%, var(--hud-purple) 100%);
-}
-
-/* Menu item active state */
-.menu-active {
-  background: linear-gradient(90deg, rgba(0, 212, 255, 0.15) 0%, transparent 100%);
-  border-left: 3px solid var(--hud-accent);
 }

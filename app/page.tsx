@@ -29,15 +29,9 @@ export default function Home() {
   }
 
   return (
-    <div className="relative flex h-screen flex-col overflow-hidden bg-hud-bg lg:flex-row">
-      {/* Subtle gradient background */}
-      <div className="gradient-overlay" />
-
-      {/* Subtle grid background */}
-      <div className="grid-bg pointer-events-none fixed inset-0" />
-
+    <div className="relative flex h-screen flex-col overflow-hidden bg-black lg:flex-row">
       {/* Mobile Header */}
-      <header className="flex items-center justify-between border-b border-hud-border bg-hud-bg-secondary/60 px-4 py-3 backdrop-blur-md lg:hidden">
+      <header className="flex items-center justify-between border-b border-hud-border bg-black px-4 py-3 lg:hidden">
         <div className="flex items-center gap-3">
           <span className="font-[family-name:var(--font-terminal)] text-base font-medium text-hud-accent">
             Sujay Tuladhar
@@ -56,11 +50,11 @@ export default function Home() {
       {/* Mobile Navigation Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-hud-bg/80 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-black/90 backdrop-blur-sm lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <div
-            className="absolute right-0 top-14 w-72 border-l border-hud-border bg-hud-bg-secondary/95 backdrop-blur-md"
+            className="absolute right-0 top-14 w-72 border-l border-hud-border bg-black"
             onClick={(e) => e.stopPropagation()}
           >
             <NavbarHUD
@@ -72,7 +66,7 @@ export default function Home() {
       )}
 
       {/* Mobile Bottom Navigation */}
-      <div className="border-t border-hud-border bg-hud-bg-secondary/60 backdrop-blur-md lg:hidden">
+      <div className="border-t border-hud-border bg-black lg:hidden">
         <NavbarHUD
           activeSection={activeSection}
           onSectionChange={setActiveSection}
@@ -80,15 +74,15 @@ export default function Home() {
         />
       </div>
 
-      {/* Main Content Area - Desktop */}
-      <main className="flex-1 overflow-hidden order-first lg:order-none">
+      {/* Main Content Area - Left Side */}
+      <main className="flex-1 overflow-hidden order-first lg:order-none bg-black">
         <div className="h-full">
           <MainDisplay activeSection={activeSection} />
         </div>
       </main>
 
-      {/* Desktop Navigation HUD */}
-      <aside className="hidden lg:block">
+      {/* Desktop Navigation Menu - Right Side */}
+      <aside className="hidden lg:flex lg:items-center border-l border-hud-border/30">
         <NavbarHUD
           activeSection={activeSection}
           onSectionChange={setActiveSection}
