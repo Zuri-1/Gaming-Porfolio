@@ -23,12 +23,12 @@ const sectionComponents: Record<Section, React.ComponentType> = {
 }
 
 const sectionTitles: Record<Section, string> = {
-  profile: 'PLAYER_PROFILE',
-  projects: 'MISSION_LOG',
-  skills: 'WEAPON_LOADOUT',
-  experience: 'COMBAT_HISTORY',
-  activities: 'SIDE_QUESTS',
-  stats: 'PLAYER_STATS',
+  profile: 'Profile',
+  projects: 'Projects',
+  skills: 'Skills',
+  experience: 'Experience',
+  activities: 'Activities',
+  stats: 'Stats',
 }
 
 export function MainDisplay({ activeSection }: MainDisplayProps) {
@@ -37,22 +37,21 @@ export function MainDisplay({ activeSection }: MainDisplayProps) {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Display Header */}
-      <div className="flex items-center justify-between border-b border-hud-accent/30 bg-hud-bg-secondary/30 px-4 py-3 lg:px-6">
+      <div className="flex items-center justify-between border-b border-hud-border bg-hud-bg-secondary/30 px-4 py-3 backdrop-blur-sm lg:px-6">
         <div className="flex items-center gap-3">
-          <div className="flex gap-1">
-            <div className="h-3 w-3 rounded-full bg-hud-danger" />
-            <div className="h-3 w-3 rounded-full bg-hud-warning" />
-            <div className="h-3 w-3 rounded-full bg-hud-accent" />
+          <div className="flex gap-1.5">
+            <div className="h-3 w-3 rounded-full bg-hud-danger/80" />
+            <div className="h-3 w-3 rounded-full bg-hud-warning/80" />
+            <div className="h-3 w-3 rounded-full bg-hud-accent/80" />
           </div>
-          <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-            {sectionTitles[activeSection]}.exe
+          <span className="font-[family-name:var(--font-terminal)] text-sm text-hud-text">
+            {sectionTitles[activeSection]}
           </span>
         </div>
-        <div className="flex items-center gap-2 font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
-          <span className="hidden sm:inline">SYSTEM_STATUS:</span>
-          <span className="inline-flex items-center gap-1">
+        <div className="flex items-center gap-2 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
+          <span className="inline-flex items-center gap-1.5">
             <span className="h-2 w-2 animate-pulse rounded-full bg-hud-accent" />
-            ONLINE
+            Online
           </span>
         </div>
       </div>
@@ -62,10 +61,10 @@ export function MainDisplay({ activeSection }: MainDisplayProps) {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
-            initial={{ opacity: 0, x: 20, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, x: -20, filter: 'blur(4px)' }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
             className="absolute inset-0 overflow-auto"
           >
             <ActiveComponent />
@@ -74,14 +73,14 @@ export function MainDisplay({ activeSection }: MainDisplayProps) {
       </div>
 
       {/* Display Footer */}
-      <div className="flex items-center justify-between border-t border-hud-accent/30 bg-hud-bg-secondary/30 px-4 py-2">
-        <div className="font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
-          <span className="text-hud-accent">↑↓</span> NAVIGATE{' '}
-          <span className="text-hud-accent">ENTER</span> SELECT{' '}
-          <span className="text-hud-accent">ESC</span> BACK
+      <div className="flex items-center justify-between border-t border-hud-border bg-hud-bg-secondary/30 px-4 py-2 backdrop-blur-sm">
+        <div className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
+          <span className="text-hud-accent">Arrow keys</span> navigate
+          <span className="mx-2 text-hud-border">|</span>
+          <span className="text-hud-accent">Enter</span> select
         </div>
-        <div className="font-[family-name:var(--font-pixel)] text-[8px] text-hud-accent/50">
-          v1.0.0
+        <div className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim/50">
+          Sujay Tuladhar
         </div>
       </div>
     </div>

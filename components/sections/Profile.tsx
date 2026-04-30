@@ -9,7 +9,7 @@ export function Profile() {
   const [bioText, setBioText] = useState('')
   const [showBio, setShowBio] = useState(false)
 
-  const name = 'SUJAY TULADHAR'
+  const name = 'Sujay Tuladhar'
   const bio = 'Computer Science & Data Science student at Augustana College with hands-on experience in full-stack development, AI/ML workflows, and building responsive web applications. Passionate about creating innovative solutions and learning new technologies.'
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export function Profile() {
         clearInterval(interval)
         setShowBio(true)
       }
-    }, 80)
+    }, 60)
     return () => clearInterval(interval)
   }, [])
 
@@ -36,73 +36,54 @@ export function Profile() {
       } else {
         clearInterval(interval)
       }
-    }, 15)
+    }, 12)
     return () => clearInterval(interval)
   }, [showBio])
 
   return (
     <div className="flex h-full flex-col gap-6 p-6 lg:p-8">
       {/* Header */}
-      <div className="flex items-center gap-2 border-b border-hud-accent/30 pb-4">
-        <span className="font-[family-name:var(--font-pixel)] text-xs text-hud-accent">
-          &gt; PLAYER_PROFILE
+      <div className="flex items-center gap-3 border-b border-hud-border pb-4">
+        <span className="font-[family-name:var(--font-terminal)] text-sm font-medium text-hud-accent">
+          About Me
         </span>
-        <div className="flex-1 border-t border-dashed border-hud-accent/30" />
-        <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
-          ID: 001
-        </span>
+        <div className="flex-1 border-t border-hud-border" />
       </div>
 
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
-        {/* Player Portrait */}
+        {/* Profile Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="relative shrink-0"
         >
-          <div className="pixel-border-accent relative h-48 w-48 overflow-hidden bg-hud-bg-secondary lg:h-56 lg:w-56">
-            {/* Avatar placeholder with scan effect */}
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-hud-accent/20 to-hud-bg-secondary">
-              <span className="font-[family-name:var(--font-pixel)] text-4xl text-hud-accent">
+          <div className="modern-card-accent relative h-48 w-48 overflow-hidden rounded-xl lg:h-56 lg:w-56">
+            {/* Avatar placeholder */}
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-hud-accent/10 to-hud-bg-secondary">
+              <span className="font-[family-name:var(--font-terminal)] text-5xl font-light text-hud-accent">
                 ST
               </span>
             </div>
-            {/* Scan line effect */}
-            <motion.div
-              className="absolute inset-x-0 h-1 bg-gradient-to-b from-hud-accent/50 to-transparent"
-              animate={{ top: ['0%', '100%'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-            />
           </div>
           {/* Status indicator */}
-          <div className="absolute -bottom-2 -right-2 flex items-center gap-1 bg-hud-bg px-2 py-1">
+          <div className="absolute -bottom-2 -right-2 flex items-center gap-1.5 rounded-full bg-hud-bg-secondary border border-hud-border px-3 py-1.5">
             <span className="h-2 w-2 animate-pulse rounded-full bg-hud-accent" />
-            <span className="font-[family-name:var(--font-pixel)] text-[8px] text-hud-accent">
-              ONLINE
+            <span className="font-[family-name:var(--font-terminal)] text-xs text-hud-accent">
+              Available
             </span>
           </div>
         </motion.div>
 
         {/* Player Info */}
-        <div className="flex-1 space-y-6">
+        <div className="flex-1 space-y-5">
           {/* Name with typewriter */}
           <div>
-            <div className="font-[family-name:var(--font-pixel)] text-xs text-hud-text-dim">
-              CODENAME:
-            </div>
-            <h1 className="font-[family-name:var(--font-pixel)] text-2xl text-hud-accent neon-glow lg:text-3xl">
+            <h1 className="font-[family-name:var(--font-terminal)] text-3xl font-medium text-hud-text lg:text-4xl">
               {nameText}
-              {nameText.length < name.length && <span className="animate-pulse">█</span>}
+              {nameText.length < name.length && <span className="text-hud-accent animate-pulse">|</span>}
             </h1>
-          </div>
-
-          {/* Title */}
-          <div>
-            <div className="font-[family-name:var(--font-pixel)] text-xs text-hud-text-dim">
-              CLASS:
-            </div>
-            <div className="font-[family-name:var(--font-terminal)] text-xl text-hud-text">
+            <div className="mt-1 font-[family-name:var(--font-terminal)] text-lg text-hud-accent">
               Full-Stack Developer & AI Enthusiast
             </div>
           </div>
@@ -110,45 +91,43 @@ export function Profile() {
           {/* Location & Education */}
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-2 text-hud-text-dim">
-              <MapPin size={14} className="text-hud-accent" />
+              <MapPin size={16} className="text-hud-accent" />
               <span className="font-[family-name:var(--font-terminal)] text-sm">Rock Island, IL</span>
             </div>
             <div className="flex items-center gap-2 text-hud-text-dim">
-              <GraduationCap size={14} className="text-hud-accent" />
+              <GraduationCap size={16} className="text-hud-accent" />
               <span className="font-[family-name:var(--font-terminal)] text-sm">Augustana College &apos;27</span>
             </div>
           </div>
 
           {/* Bio with typewriter */}
-          <div className="pixel-border bg-hud-bg-secondary/50 p-4">
-            <div className="mb-2 font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-              BIO_DATA:
-            </div>
-            <p className="min-h-[80px] font-[family-name:var(--font-terminal)] text-lg leading-relaxed text-hud-text">
+          <div className="modern-card rounded-lg p-5">
+            <p className="min-h-[80px] font-[family-name:var(--font-terminal)] text-base leading-relaxed text-hud-text-dim">
               {bioText}
               {showBio && bioText.length < bio.length && (
-                <span className="animate-pulse text-hud-accent">█</span>
+                <span className="text-hud-accent animate-pulse">|</span>
               )}
             </p>
           </div>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {[
-              { label: 'DEGREE', value: 'CS/DS' },
-              { label: 'EXP', value: '3+YRS' },
-              { label: 'STATUS', value: 'ACTIVE' },
-            ].map((stat) => (
+              { label: 'Degree', value: 'CS/DS' },
+              { label: 'Experience', value: '3+ Years' },
+              { label: 'Status', value: 'Active' },
+            ].map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="pixel-border bg-hud-bg-secondary/50 p-3 text-center"
+                transition={{ delay: index * 0.1 }}
+                className="modern-card rounded-lg p-4 text-center"
               >
-                <div className="font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
+                <div className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
                   {stat.label}
                 </div>
-                <div className="font-[family-name:var(--font-terminal)] text-xl text-hud-accent">
+                <div className="mt-1 font-[family-name:var(--font-terminal)] text-lg text-hud-accent">
                   {stat.value}
                 </div>
               </motion.div>
@@ -158,21 +137,21 @@ export function Profile() {
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-auto flex flex-wrap gap-3 border-t border-hud-accent/30 pt-6">
+      <div className="mt-auto flex flex-wrap gap-3 border-t border-hud-border pt-6">
         {[
-          { icon: <Github size={18} />, label: 'GITHUB', href: 'https://github.com/Zuri-1' },
-          { icon: <Linkedin size={18} />, label: 'LINKEDIN', href: 'https://www.linkedin.com/in/sujay-tuladhar-1557793' },
-          { icon: <Mail size={18} />, label: 'CONTACT', href: 'mailto:sujaytuladhar23@augustana.edu' },
-          { icon: <FileDown size={18} />, label: 'RESUME', href: '#' },
+          { icon: <Github size={18} />, label: 'GitHub', href: 'https://github.com/Zuri-1' },
+          { icon: <Linkedin size={18} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/sujay-tuladhar-1557793' },
+          { icon: <Mail size={18} />, label: 'Contact', href: 'mailto:sujaytuladhar23@augustana.edu' },
+          { icon: <FileDown size={18} />, label: 'Resume', href: '#' },
         ].map((action) => (
           <motion.a
             key={action.label}
             href={action.href}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="focus-hud flex items-center gap-2 border border-hud-accent/50 bg-hud-bg-secondary px-4 py-2 font-[family-name:var(--font-terminal)] text-sm text-hud-accent transition-all hover:border-hud-accent hover:bg-hud-accent/10 hover:shadow-[0_0_10px_rgba(0,255,65,0.3)]"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="focus-ring btn-glow flex items-center gap-2 rounded-lg border border-hud-border bg-hud-bg-secondary px-4 py-2.5 font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim transition-colors hover:text-hud-accent"
           >
             {action.icon}
             {action.label}

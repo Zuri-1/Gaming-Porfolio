@@ -12,12 +12,12 @@ interface NavbarHUDProps {
 }
 
 const menuItems: { id: Section; label: string; icon: React.ReactNode }[] = [
-  { id: 'profile', label: 'PROFILE', icon: <User size={18} /> },
-  { id: 'projects', label: 'PROJECTS', icon: <FolderGit2 size={18} /> },
-  { id: 'skills', label: 'SKILLS', icon: <Wrench size={18} /> },
-  { id: 'experience', label: 'EXPERIENCE', icon: <Briefcase size={18} /> },
-  { id: 'activities', label: 'ACTIVITIES', icon: <Trophy size={18} /> },
-  { id: 'stats', label: 'STATS', icon: <BarChart3 size={18} /> },
+  { id: 'profile', label: 'Profile', icon: <User size={18} /> },
+  { id: 'projects', label: 'Projects', icon: <FolderGit2 size={18} /> },
+  { id: 'skills', label: 'Skills', icon: <Wrench size={18} /> },
+  { id: 'experience', label: 'Experience', icon: <Briefcase size={18} /> },
+  { id: 'activities', label: 'Activities', icon: <Trophy size={18} /> },
+  { id: 'stats', label: 'Stats', icon: <BarChart3 size={18} /> },
 ]
 
 export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: NavbarHUDProps) {
@@ -26,27 +26,25 @@ export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: 
       className={`${
         isMobile
           ? 'flex w-full flex-row gap-1 overflow-x-auto p-2'
-          : 'flex h-full w-64 flex-col border-l-2 border-hud-accent/30 bg-hud-bg-secondary/50 p-4'
+          : 'flex h-full w-72 flex-col border-l border-hud-border bg-hud-bg-secondary/30 backdrop-blur-sm'
       }`}
       role="navigation"
       aria-label="Main navigation"
     >
       {/* Header - Desktop only */}
       {!isMobile && (
-        <div className="mb-6 border-b border-hud-accent/30 pb-4">
-          <div className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-            NAVIGATION_HUD
+        <div className="border-b border-hud-border p-5">
+          <div className="font-[family-name:var(--font-terminal)] text-sm font-medium text-hud-accent">
+            Navigation
           </div>
           <div className="mt-2 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
-            Use ↑↓ or WASD to navigate
-            <br />
-            Press ENTER to select
+            Use arrow keys or WASD to navigate
           </div>
         </div>
       )}
 
       {/* Menu Items */}
-      <ul className={`${isMobile ? 'flex flex-row gap-1' : 'flex flex-col gap-2'}`} role="menu">
+      <ul className={`${isMobile ? 'flex flex-row gap-1' : 'flex flex-1 flex-col gap-1 p-3'}`} role="menu">
         {menuItems.map((item, index) => {
           const isActive = activeSection === item.id
           return (
@@ -56,14 +54,14 @@ export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: 
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => onSectionChange(item.id)}
                 className={`
-                  focus-hud relative flex w-full items-center gap-3 transition-all duration-200
+                  focus-ring relative flex w-full items-center gap-3 rounded-lg transition-all duration-200
                   ${isMobile 
                     ? 'flex-col px-3 py-2 text-[10px]' 
-                    : 'px-4 py-3 font-[family-name:var(--font-terminal)] text-lg'
+                    : 'px-4 py-3 font-[family-name:var(--font-terminal)] text-base'
                   }
                   ${isActive
                     ? 'bg-hud-accent/10 text-hud-accent'
-                    : 'text-hud-text-dim hover:bg-hud-accent/5 hover:text-hud-text'
+                    : 'text-hud-text-dim hover:bg-hud-border/50 hover:text-hud-text'
                   }
                 `}
                 aria-current={isActive ? 'page' : undefined}
@@ -73,21 +71,9 @@ export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: 
                   <motion.div
                     layoutId="activeIndicator"
                     className={`absolute bg-hud-accent ${
-                      isMobile ? 'bottom-0 left-0 h-0.5 w-full' : 'left-0 top-0 h-full w-1'
+                      isMobile ? 'bottom-0 left-2 right-2 h-0.5 rounded-full' : 'left-0 top-2 bottom-2 w-0.5 rounded-full'
                     }`}
-                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                  />
-                )}
-
-                {/* Glow effect for active item */}
-                {isActive && !isMobile && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="absolute inset-0 bg-hud-accent/5"
-                    style={{
-                      boxShadow: 'inset 0 0 20px rgba(0, 255, 65, 0.1)',
-                    }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
 
@@ -97,14 +83,14 @@ export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: 
                 </span>
 
                 {/* Label */}
-                <span className={`relative z-10 ${isMobile ? 'font-[family-name:var(--font-pixel)]' : ''}`}>
+                <span className="relative z-10">
                   {isMobile ? item.label.slice(0, 4) : item.label}
                 </span>
 
-                {/* Index number - Desktop only */}
+                {/* Keyboard shortcut - Desktop only */}
                 {!isMobile && (
-                  <span className="ml-auto font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
-                    [{index + 1}]
+                  <span className="ml-auto rounded bg-hud-border/50 px-2 py-0.5 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
+                    {index + 1}
                   </span>
                 )}
               </button>
@@ -115,14 +101,14 @@ export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: 
 
       {/* Footer - Desktop only */}
       {!isMobile && (
-        <div className="mt-auto border-t border-hud-accent/30 pt-4">
-          <div className="font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
+        <div className="border-t border-hud-border p-5">
+          <div className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
             <div className="flex items-center gap-2">
               <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-hud-accent" />
-              SYSTEM ONLINE
+              <span>Online</span>
             </div>
-            <div className="mt-2 text-hud-accent/50">
-              v1.0.0 // DEV_MODE
+            <div className="mt-2 text-hud-text-dim/50">
+              Press Enter to select
             </div>
           </div>
         </div>

@@ -2,60 +2,56 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Zap, Shield, Sword, Target } from 'lucide-react'
+import { Code, Layers, Wrench, Database } from 'lucide-react'
 
 const skillCategories = [
   {
-    name: 'PRIMARY WEAPONS',
-    subtitle: 'Languages',
-    icon: <Sword size={20} />,
+    name: 'Languages',
+    icon: <Code size={18} />,
     skills: [
-      { name: 'Python', level: 90, xp: '9,000' },
-      { name: 'JavaScript', level: 85, xp: '8,500' },
-      { name: 'Java', level: 80, xp: '8,000' },
-      { name: 'PHP', level: 70, xp: '7,000' },
-      { name: 'HTML/CSS', level: 90, xp: '9,000' },
+      { name: 'Python', level: 90 },
+      { name: 'JavaScript', level: 85 },
+      { name: 'Java', level: 80 },
+      { name: 'PHP', level: 70 },
+      { name: 'HTML/CSS', level: 90 },
     ],
   },
   {
-    name: 'SECONDARY LOADOUT',
-    subtitle: 'Frameworks & Libraries',
-    icon: <Shield size={20} />,
+    name: 'Frameworks',
+    icon: <Layers size={18} />,
     skills: [
-      { name: 'React', level: 88, xp: '8,800' },
-      { name: 'Node.js', level: 82, xp: '8,200' },
-      { name: 'OpenCV', level: 78, xp: '7,800' },
-      { name: 'PyTorch', level: 72, xp: '7,200' },
-      { name: 'scikit-learn', level: 80, xp: '8,000' },
-      { name: 'YOLOv5', level: 75, xp: '7,500' },
+      { name: 'React', level: 88 },
+      { name: 'Node.js', level: 82 },
+      { name: 'OpenCV', level: 78 },
+      { name: 'PyTorch', level: 72 },
+      { name: 'scikit-learn', level: 80 },
+      { name: 'YOLOv5', level: 75 },
     ],
   },
   {
-    name: 'TACTICAL GEAR',
-    subtitle: 'Tools & Tech',
-    icon: <Target size={20} />,
+    name: 'Tools',
+    icon: <Wrench size={18} />,
     skills: [
-      { name: 'Git/GitHub', level: 88, xp: '8,800' },
-      { name: 'VS Code', level: 92, xp: '9,200' },
-      { name: 'Tableau', level: 75, xp: '7,500' },
-      { name: 'Microsoft Excel', level: 85, xp: '8,500' },
-      { name: 'Google Colab', level: 82, xp: '8,200' },
+      { name: 'Git/GitHub', level: 88 },
+      { name: 'VS Code', level: 92 },
+      { name: 'Tableau', level: 75 },
+      { name: 'Microsoft Excel', level: 85 },
+      { name: 'Google Colab', level: 82 },
     ],
   },
   {
-    name: 'DATA ARSENAL',
-    subtitle: 'Data & Analytics',
-    icon: <Zap size={20} />,
+    name: 'Data & Analytics',
+    icon: <Database size={18} />,
     skills: [
-      { name: 'Pandas', level: 88, xp: '8,800' },
-      { name: 'NumPy', level: 85, xp: '8,500' },
-      { name: 'Matplotlib', level: 80, xp: '8,000' },
-      { name: 'SQL', level: 75, xp: '7,500' },
+      { name: 'Pandas', level: 88 },
+      { name: 'NumPy', level: 85 },
+      { name: 'Matplotlib', level: 80 },
+      { name: 'SQL', level: 75 },
     ],
   },
 ]
 
-function SkillBar({ skill, delay }: { skill: { name: string; level: number; xp: string }; delay: number }) {
+function SkillBar({ skill, delay }: { skill: { name: string; level: number }; delay: number }) {
   const [animated, setAnimated] = useState(false)
 
   useEffect(() => {
@@ -63,38 +59,23 @@ function SkillBar({ skill, delay }: { skill: { name: string; level: number; xp: 
     return () => clearTimeout(timer)
   }, [delay])
 
-  const blocks = 10
-  const filledBlocks = Math.round((skill.level / 100) * blocks)
-
   return (
     <div className="group">
-      <div className="mb-1 flex items-center justify-between">
+      <div className="mb-1.5 flex items-center justify-between">
         <span className="font-[family-name:var(--font-terminal)] text-sm text-hud-text">
           {skill.name}
         </span>
-        <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-          LVL {skill.level}
+        <span className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
+          {skill.level}%
         </span>
       </div>
-      <div className="flex items-center gap-2">
-        <div className="flex flex-1 gap-0.5">
-          {Array.from({ length: blocks }).map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ scaleY: 0 }}
-              animate={animated ? { scaleY: 1 } : {}}
-              transition={{ delay: i * 0.05, duration: 0.2 }}
-              className={`h-4 flex-1 origin-bottom ${
-                i < filledBlocks
-                  ? 'bg-hud-accent shadow-[0_0_8px_rgba(0,255,65,0.4)]'
-                  : 'bg-hud-border'
-              }`}
-            />
-          ))}
-        </div>
-        <span className="w-12 font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
-          {skill.xp} XP
-        </span>
+      <div className="h-2 w-full overflow-hidden rounded-full bg-hud-border">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={animated ? { width: `${skill.level}%` } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="h-full rounded-full bg-gradient-to-r from-hud-accent to-hud-blue"
+        />
       </div>
     </div>
   )
@@ -106,13 +87,13 @@ export function Skills() {
   return (
     <div className="flex h-full flex-col gap-6 overflow-auto p-6 lg:p-8">
       {/* Header */}
-      <div className="flex items-center gap-2 border-b border-hud-accent/30 pb-4">
-        <span className="font-[family-name:var(--font-pixel)] text-xs text-hud-accent">
-          &gt; WEAPON_LOADOUT
+      <div className="flex items-center gap-3 border-b border-hud-border pb-4">
+        <span className="font-[family-name:var(--font-terminal)] text-sm font-medium text-hud-accent">
+          Skills
         </span>
-        <div className="flex-1 border-t border-dashed border-hud-accent/30" />
-        <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
-          {skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0)} SKILLS
+        <div className="flex-1 border-t border-hud-border" />
+        <span className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
+          {skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0)} skills
         </span>
       </div>
 
@@ -122,15 +103,14 @@ export function Skills() {
           <button
             key={cat.name}
             onClick={() => setActiveCategory(idx)}
-            className={`focus-hud flex items-center gap-2 px-3 py-2 font-[family-name:var(--font-terminal)] text-sm transition-all ${
+            className={`focus-ring flex items-center gap-2 rounded-lg px-4 py-2 font-[family-name:var(--font-terminal)] text-sm transition-all ${
               activeCategory === idx
-                ? 'border border-hud-accent bg-hud-accent/10 text-hud-accent'
-                : 'border border-hud-border text-hud-text-dim hover:border-hud-accent/50 hover:text-hud-text'
+                ? 'bg-hud-accent/10 text-hud-accent border border-hud-accent/50'
+                : 'bg-hud-bg-secondary text-hud-text-dim hover:text-hud-text border border-hud-border'
             }`}
           >
             {cat.icon}
-            <span className="hidden sm:inline">{cat.name}</span>
-            <span className="sm:hidden">{cat.subtitle}</span>
+            <span>{cat.name}</span>
           </button>
         ))}
       </div>
@@ -138,48 +118,43 @@ export function Skills() {
       {/* Active Category Content */}
       <motion.div
         key={activeCategory}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
         className="flex-1"
       >
-        <div className="pixel-border bg-hud-bg-secondary/50 p-4 lg:p-6">
-          <div className="mb-4 flex items-center gap-3">
+        <div className="modern-card rounded-xl p-6">
+          <div className="mb-5 flex items-center gap-3">
             <span className="text-hud-accent">{skillCategories[activeCategory].icon}</span>
-            <div>
-              <h3 className="font-[family-name:var(--font-terminal)] text-lg text-hud-accent">
-                {skillCategories[activeCategory].name}
-              </h3>
-              <p className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
-                {skillCategories[activeCategory].subtitle}
-              </p>
-            </div>
+            <h3 className="font-[family-name:var(--font-terminal)] text-lg font-medium text-hud-text">
+              {skillCategories[activeCategory].name}
+            </h3>
           </div>
 
           <div className="space-y-4">
             {skillCategories[activeCategory].skills.map((skill, idx) => (
-              <SkillBar key={skill.name} skill={skill} delay={idx * 100} />
+              <SkillBar key={skill.name} skill={skill} delay={idx * 80} />
             ))}
           </div>
         </div>
       </motion.div>
 
-      {/* All Skills Grid View */}
-      <div className="grid gap-4 md:grid-cols-2">
+      {/* Other Skills Summary */}
+      <div className="grid gap-3 md:grid-cols-3">
         {skillCategories.map((cat, catIdx) => (
           catIdx !== activeCategory && (
-            <div key={cat.name} className="pixel-border bg-hud-bg-secondary/30 p-3">
-              <div className="mb-2 flex items-center gap-2">
-                <span className="text-hud-accent/50">{cat.icon}</span>
-                <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
-                  {cat.subtitle}
+            <div key={cat.name} className="modern-card rounded-lg p-4">
+              <div className="mb-3 flex items-center gap-2">
+                <span className="text-hud-accent/60">{cat.icon}</span>
+                <span className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
+                  {cat.name}
                 </span>
               </div>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap gap-1.5">
                 {cat.skills.map((skill) => (
                   <span
                     key={skill.name}
-                    className="bg-hud-accent/5 px-2 py-1 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim"
+                    className="rounded-md bg-hud-border/50 px-2 py-1 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim"
                   >
                     {skill.name}
                   </span>
@@ -191,15 +166,15 @@ export function Skills() {
       </div>
 
       {/* Languages Section */}
-      <div className="pixel-border bg-hud-bg-secondary/30 p-4">
-        <div className="mb-3 font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-          COMMUNICATION_PROTOCOLS:
+      <div className="modern-card rounded-lg p-4">
+        <div className="mb-3 font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim">
+          Languages
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2">
           {['English', 'Nepali', 'Newari', 'Hindi'].map((lang) => (
             <span
               key={lang}
-              className="border border-hud-cyan/30 bg-hud-cyan/5 px-3 py-1 font-[family-name:var(--font-terminal)] text-sm text-hud-cyan"
+              className="rounded-lg border border-hud-accent/30 bg-hud-accent/5 px-3 py-1.5 font-[family-name:var(--font-terminal)] text-sm text-hud-accent"
             >
               {lang}
             </span>

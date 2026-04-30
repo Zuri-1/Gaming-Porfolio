@@ -5,12 +5,12 @@ import { motion } from 'framer-motion'
 import { GitCommit, Code2, Clock, Cpu, Briefcase, Globe } from 'lucide-react'
 
 const stats = [
-  { id: 1, label: 'TOTAL PROJECTS', value: 5, suffix: '+', icon: <Code2 size={24} /> },
-  { id: 2, label: 'LANGUAGES KNOWN', value: 4, suffix: '', icon: <Cpu size={24} /> },
-  { id: 3, label: 'INTERNSHIPS', value: 3, suffix: '', icon: <Briefcase size={24} /> },
-  { id: 4, label: 'TECHNOLOGIES', value: 20, suffix: '+', icon: <GitCommit size={24} /> },
-  { id: 5, label: 'SPOKEN LANGUAGES', value: 4, suffix: '', icon: <Globe size={24} /> },
-  { id: 6, label: 'YEARS CODING', value: 3, suffix: '+', icon: <Clock size={24} /> },
+  { id: 1, label: 'Total Projects', value: 5, suffix: '+', icon: <Code2 size={22} /> },
+  { id: 2, label: 'Programming Languages', value: 5, suffix: '', icon: <Cpu size={22} /> },
+  { id: 3, label: 'Internships', value: 3, suffix: '', icon: <Briefcase size={22} /> },
+  { id: 4, label: 'Technologies', value: 20, suffix: '+', icon: <GitCommit size={22} /> },
+  { id: 5, label: 'Spoken Languages', value: 4, suffix: '', icon: <Globe size={22} /> },
+  { id: 6, label: 'Years Coding', value: 3, suffix: '+', icon: <Clock size={22} /> },
 ]
 
 const radarData = [
@@ -65,8 +65,8 @@ function RadarChart() {
     return {
       x: centerX + r * Math.cos(angle),
       y: centerY + r * Math.sin(angle),
-      labelX: centerX + (radius + 20) * Math.cos(angle),
-      labelY: centerY + (radius + 20) * Math.sin(angle),
+      labelX: centerX + (radius + 25) * Math.cos(angle),
+      labelY: centerY + (radius + 25) * Math.sin(angle),
       ...item,
     }
   })
@@ -84,7 +84,7 @@ function RadarChart() {
             cy={centerY}
             r={radius * scale}
             fill="none"
-            stroke="rgba(0, 255, 65, 0.1)"
+            stroke="rgba(0, 212, 255, 0.1)"
             strokeWidth="1"
           />
         ))}
@@ -97,7 +97,7 @@ function RadarChart() {
             y1={centerY}
             x2={centerX + radius * Math.cos(i * angleStep - Math.PI / 2)}
             y2={centerY + radius * Math.sin(i * angleStep - Math.PI / 2)}
-            stroke="rgba(0, 255, 65, 0.2)"
+            stroke="rgba(0, 212, 255, 0.15)"
             strokeWidth="1"
           />
         ))}
@@ -105,8 +105,8 @@ function RadarChart() {
         {/* Data polygon */}
         <motion.path
           d={pathData}
-          fill="rgba(0, 255, 65, 0.2)"
-          stroke="#00ff41"
+          fill="rgba(0, 212, 255, 0.15)"
+          stroke="#00d4ff"
           strokeWidth="2"
           initial={{ opacity: 0, scale: 0 }}
           animate={animated ? { opacity: 1, scale: 1 } : {}}
@@ -121,7 +121,7 @@ function RadarChart() {
             cx={p.x}
             cy={p.y}
             r="4"
-            fill="#00ff41"
+            fill="#00d4ff"
             initial={{ opacity: 0 }}
             animate={animated ? { opacity: 1 } : {}}
             transition={{ delay: 0.8 + i * 0.1 }}
@@ -136,7 +136,7 @@ function RadarChart() {
             y={p.labelY}
             textAnchor="middle"
             dominantBaseline="middle"
-            className="fill-hud-text-dim font-[family-name:var(--font-pixel)] text-[8px]"
+            className="fill-hud-text-dim font-[family-name:var(--font-terminal)] text-[10px]"
           >
             {p.skill}
           </text>
@@ -150,13 +150,13 @@ export function Stats() {
   return (
     <div className="flex h-full flex-col gap-6 overflow-auto p-6 lg:p-8">
       {/* Header */}
-      <div className="flex items-center gap-2 border-b border-hud-accent/30 pb-4">
-        <span className="font-[family-name:var(--font-pixel)] text-xs text-hud-accent">
-          &gt; PLAYER_STATISTICS
+      <div className="flex items-center gap-3 border-b border-hud-border pb-4">
+        <span className="font-[family-name:var(--font-terminal)] text-sm font-medium text-hud-accent">
+          Statistics
         </span>
-        <div className="flex-1 border-t border-dashed border-hud-accent/30" />
-        <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
-          LIVE_DATA
+        <div className="flex-1 border-t border-hud-border" />
+        <span className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
+          Live data
         </span>
       </div>
 
@@ -168,17 +168,17 @@ export function Stats() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="pixel-border group bg-hud-bg-secondary/50 p-4 transition-all hover:border-hud-accent hover:shadow-[0_0_20px_rgba(0,255,65,0.2)]"
+            className="modern-card group rounded-xl p-5 transition-all hover:border-hud-accent/30"
           >
             <div className="mb-3 flex items-center justify-between">
-              <span className="font-[family-name:var(--font-pixel)] text-[10px] text-hud-text-dim">
+              <span className="font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim">
                 {stat.label}
               </span>
               <span className="text-hud-accent/50 transition-colors group-hover:text-hud-accent">
                 {stat.icon}
               </span>
             </div>
-            <div className="font-[family-name:var(--font-terminal)] text-4xl text-hud-accent neon-glow">
+            <div className="font-[family-name:var(--font-terminal)] text-4xl font-light text-hud-accent">
               <AnimatedCounter value={stat.value} />
               {stat.suffix}
             </div>
@@ -188,19 +188,19 @@ export function Stats() {
 
       {/* Radar Chart Section */}
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="pixel-border bg-hud-bg-secondary/50 p-4">
-          <div className="mb-4 font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-            SKILL_DISTRIBUTION:
+        <div className="modern-card rounded-xl p-5">
+          <div className="mb-4 font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim">
+            Skill Distribution
           </div>
           <RadarChart />
         </div>
 
         {/* Tech Stack Overview */}
-        <div className="pixel-border bg-hud-bg-secondary/50 p-4">
-          <div className="mb-4 font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-            TECH_ARSENAL:
+        <div className="modern-card rounded-xl p-5">
+          <div className="mb-4 font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim">
+            Tech Stack
           </div>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
               { label: 'Languages', items: ['Python', 'Java', 'JavaScript', 'PHP'] },
               { label: 'Frameworks', items: ['React', 'Node.js', 'Express'] },
@@ -208,14 +208,14 @@ export function Stats() {
               { label: 'Data', items: ['Pandas', 'NumPy', 'Matplotlib', 'Tableau'] },
             ].map((category) => (
               <div key={category.label}>
-                <div className="mb-1 font-[family-name:var(--font-pixel)] text-[8px] text-hud-text-dim">
+                <div className="mb-2 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
                   {category.label}
                 </div>
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1.5">
                   {category.items.map((item) => (
                     <span
                       key={item}
-                      className="border border-hud-accent/30 bg-hud-accent/5 px-2 py-0.5 font-[family-name:var(--font-terminal)] text-xs text-hud-accent"
+                      className="rounded-md bg-hud-border/50 px-2 py-1 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim"
                     >
                       {item}
                     </span>
@@ -228,29 +228,29 @@ export function Stats() {
       </div>
 
       {/* Progress Bars */}
-      <div className="pixel-border bg-hud-bg-secondary/50 p-4">
-        <div className="mb-4 font-[family-name:var(--font-pixel)] text-[10px] text-hud-accent">
-          PROGRESSION_STATUS:
+      <div className="modern-card rounded-xl p-5">
+        <div className="mb-4 font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim">
+          Progress
         </div>
         <div className="space-y-4">
           {[
-            { label: 'DEGREE COMPLETION', current: 60, max: 100 },
-            { label: 'FRONTEND MASTERY', current: 88, max: 100 },
-            { label: 'AI/ML PROFICIENCY', current: 78, max: 100 },
+            { label: 'Degree Completion', current: 60, max: 100 },
+            { label: 'Frontend Development', current: 88, max: 100 },
+            { label: 'AI/ML Proficiency', current: 78, max: 100 },
           ].map((progress) => (
             <div key={progress.label}>
-              <div className="mb-1 flex justify-between font-[family-name:var(--font-pixel)] text-[10px]">
+              <div className="mb-2 flex justify-between font-[family-name:var(--font-terminal)] text-sm">
                 <span className="text-hud-text-dim">{progress.label}</span>
                 <span className="text-hud-accent">
                   {progress.current}%
                 </span>
               </div>
-              <div className="h-3 w-full overflow-hidden border border-hud-accent/30 bg-hud-bg">
+              <div className="h-2 w-full overflow-hidden rounded-full bg-hud-border">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${(progress.current / progress.max) * 100}%` }}
                   transition={{ duration: 1, ease: 'easeOut' }}
-                  className="h-full bg-gradient-to-r from-hud-accent/50 to-hud-accent"
+                  className="h-full rounded-full bg-gradient-to-r from-hud-accent to-hud-blue"
                 />
               </div>
             </div>
