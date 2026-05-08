@@ -6,6 +6,7 @@ export type Section = 'profile' | 'projects' | 'skills' | 'experience' | 'activi
 
 interface NavbarHUDProps {
   activeSection: Section
+  highlightedSection?: Section
   onSectionChange: (section: Section) => void
   isMobile?: boolean
 }
@@ -19,7 +20,7 @@ const menuItems: { id: Section; label: string }[] = [
   { id: 'stats', label: 'Stats' },
 ]
 
-export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: NavbarHUDProps) {
+export function NavbarHUD({ activeSection, highlightedSection, onSectionChange, isMobile = false }: NavbarHUDProps) {
   return (
     <nav
       className={`${
@@ -49,7 +50,7 @@ export function NavbarHUD({ activeSection, onSectionChange, isMobile = false }: 
                 className={`
                   game-menu-btn w-full font-[family-name:var(--font-terminal)]
                   ${isMobile ? 'text-xs px-4 py-2' : ''}
-                  ${isActive ? 'active' : ''}
+                  ${isActive ? 'active' : highlightedSection === item.id ? 'highlighted' : ''}
                 `}
                 aria-current={isActive ? 'page' : undefined}
               >

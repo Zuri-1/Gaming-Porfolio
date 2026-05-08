@@ -13,7 +13,7 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Keyboard navigation
-  useKeyboardNav({
+  const { highlightedSection } = useKeyboardNav({
     activeSection,
     onSectionChange: setActiveSection,
     enabled: !isBooting,
@@ -59,6 +59,7 @@ export default function Home() {
           >
             <NavbarHUD
               activeSection={activeSection}
+              highlightedSection={highlightedSection}
               onSectionChange={setActiveSection}
             />
           </div>
@@ -69,6 +70,7 @@ export default function Home() {
       <div className="border-t border-hud-border bg-black lg:hidden">
         <NavbarHUD
           activeSection={activeSection}
+          highlightedSection={highlightedSection}
           onSectionChange={setActiveSection}
           isMobile
         />
@@ -85,6 +87,7 @@ export default function Home() {
       <aside className="hidden lg:flex lg:items-center border-l border-hud-border/30">
         <NavbarHUD
           activeSection={activeSection}
+          highlightedSection={highlightedSection}
           onSectionChange={setActiveSection}
         />
       </aside>

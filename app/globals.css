@@ -244,6 +244,13 @@
   background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%);
 }
 
+.game-menu-btn.highlighted {
+  background: linear-gradient(180deg, #1a3a3a 0%, #0d2a2a 100%);
+  border-color: #00d4ff;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.3), inset 0 0 8px rgba(0, 212, 255, 0.1);
+  transform: scale(1.01);
+}
+
 .game-menu-btn.active {
   background: linear-gradient(180deg, #00d4ff 0%, #0077aa 100%);
   border-color: #00ffff;
