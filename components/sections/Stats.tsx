@@ -90,7 +90,7 @@ function RadarChart() {
         ))}
 
         {/* Axis lines */}
-        {points.map((p, i) => (
+        {points.map((_, i) => (
           <line
             key={i}
             x1={centerX}
@@ -224,37 +224,6 @@ export function Stats() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Progress Bars */}
-      <div className="modern-card rounded-xl p-5">
-        <div className="mb-4 font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim">
-          Progress
-        </div>
-        <div className="space-y-4">
-          {[
-            { label: 'Degree Completion', current: 60, max: 100 },
-            { label: 'Frontend Development', current: 88, max: 100 },
-            { label: 'AI/ML Proficiency', current: 78, max: 100 },
-          ].map((progress) => (
-            <div key={progress.label}>
-              <div className="mb-2 flex justify-between font-[family-name:var(--font-terminal)] text-sm">
-                <span className="text-hud-text-dim">{progress.label}</span>
-                <span className="text-hud-accent">
-                  {progress.current}%
-                </span>
-              </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-hud-border">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${(progress.current / progress.max) * 100}%` }}
-                  transition={{ duration: 1, ease: 'easeOut' }}
-                  className="h-full rounded-full bg-gradient-to-r from-hud-accent to-hud-blue"
-                />
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </div>
