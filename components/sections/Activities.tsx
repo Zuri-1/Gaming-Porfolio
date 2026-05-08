@@ -30,9 +30,9 @@ const activities = [
   },
   {
     id: 4,
-    type: 'Competition',
-    title: 'Competitive Gaming',
-    description: 'Experience in high-stakes competitive environments, developing quick decision-making skills, strategic thinking, and effective team communication.',
+    type: 'Leadership',
+    title: 'Vice President - Omicron Sigma Omicron (OZO) Fraternity',
+    description: 'Serving as Vice President of OZO Fraternity, overseeing chapter operations, coordinating events, and fostering brotherhood through leadership, accountability, and community engagement.',
     duration: 'Ongoing',
     icon: <Trophy size={18} />,
   },
