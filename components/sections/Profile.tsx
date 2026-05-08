@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Linkedin, FileDown, Mail, MapPin, GraduationCap } from 'lucide-react'
+import Image from 'next/image'
 
 export function Profile() {
   const [nameText, setNameText] = useState('')
@@ -58,16 +59,32 @@ export function Profile() {
           transition={{ duration: 0.4 }}
           className="relative shrink-0"
         >
-          <div className="modern-card-accent relative h-48 w-48 overflow-hidden rounded-xl lg:h-56 lg:w-56">
-            {/* Avatar placeholder */}
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-hud-accent/10 to-hud-bg-secondary">
-              <span className="font-[family-name:var(--font-terminal)] text-5xl font-light text-hud-accent">
-                ST
-              </span>
-            </div>
+          {/* Outer glow frame */}
+          <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-hud-accent/50 via-hud-accent/20 to-transparent blur-sm" />
+          
+          {/* Main image container with border */}
+          <div className="relative h-52 w-52 overflow-hidden rounded-xl border-2 border-hud-accent/60 lg:h-64 lg:w-64">
+            {/* Corner accents */}
+            <div className="absolute left-0 top-0 h-4 w-4 border-l-2 border-t-2 border-hud-accent" />
+            <div className="absolute right-0 top-0 h-4 w-4 border-r-2 border-t-2 border-hud-accent" />
+            <div className="absolute bottom-0 left-0 h-4 w-4 border-b-2 border-l-2 border-hud-accent" />
+            <div className="absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-hud-accent" />
+            
+            {/* Image */}
+            <Image
+              src="/images/profile.jpg"
+              alt="Sujay Tuladhar"
+              fill
+              className="object-cover object-top"
+              priority
+            />
+            
+            {/* Subtle overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </div>
+          
           {/* Status indicator */}
-          <div className="absolute -bottom-2 -right-2 flex items-center gap-1.5 rounded-full bg-hud-bg-secondary border border-hud-border px-3 py-1.5">
+          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-full bg-black border border-hud-accent/60 px-4 py-1.5 shadow-lg shadow-hud-accent/20">
             <span className="h-2 w-2 animate-pulse rounded-full bg-hud-accent" />
             <span className="font-[family-name:var(--font-terminal)] text-xs text-hud-accent">
               Available
