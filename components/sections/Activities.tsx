@@ -7,13 +7,21 @@ const activities = [
   {
     id: 1,
     type: 'Leadership',
+    title: 'Vice President - Omicron Sigma Omicron (OZO) Fraternity',
+    description: 'Serving as Vice President of OZO Fraternity, overseeing chapter operations, coordinating events, and fostering brotherhood through leadership, accountability, and community engagement.',
+    duration: 'Ongoing',
+    icon: <Trophy size={18} />,
+  },
+  {
+    id: 2,
+    type: 'Leadership',
     title: 'Augustana Esports - Captain',
     description: 'Leading team with strong communication and strategic decision-making during high-pressure competitive situations. Analyzing complex plays and relaying tactical information to teammates.',
     duration: 'Sep 2023 - Present',
     icon: <Gamepad2 size={18} />,
   },
   {
-    id: 2,
+    id: 3,
     type: 'Athletics',
     title: 'Augustana Club Volleyball',
     description: 'Building resilience and time management skills through competitive athletics. Emphasizing trust, consistent effort, and supporting teammates while staying focused on continuous improvement.',
@@ -21,20 +29,12 @@ const activities = [
     icon: <Activity size={18} />,
   },
   {
-    id: 3,
+    id: 4,
     type: 'Collaboration',
     title: 'Team-Based Development',
     description: 'Collaborated in team environments using Git and GitHub for version control, feature development, and code integration on multiple projects.',
     duration: 'Ongoing',
     icon: <Users size={18} />,
-  },
-  {
-    id: 4,
-    type: 'Leadership',
-    title: 'Vice President - Omicron Sigma Omicron (OZO) Fraternity',
-    description: 'Serving as Vice President of OZO Fraternity, overseeing chapter operations, coordinating events, and fostering brotherhood through leadership, accountability, and community engagement.',
-    duration: 'Ongoing',
-    icon: <Trophy size={18} />,
   },
 ]
 

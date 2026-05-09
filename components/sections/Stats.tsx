@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { GitCommit, Code2, Clock, Cpu, Briefcase, Globe } from 'lucide-react'
 
 const stats = [
-  { id: 1, label: 'Total Projects', value: 5, suffix: '+', icon: <Code2 size={22} /> },
+  { id: 1, label: 'Total Projects', value: 2, suffix: '+', icon: <Code2 size={22} /> },
   { id: 2, label: 'Programming Languages', value: 5, suffix: '', icon: <Cpu size={22} /> },
   { id: 3, label: 'Internships', value: 3, suffix: '', icon: <Briefcase size={22} /> },
   { id: 4, label: 'Technologies', value: 20, suffix: '+', icon: <GitCommit size={22} /> },
