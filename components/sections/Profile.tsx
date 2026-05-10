@@ -157,8 +157,8 @@ export function Profile() {
       <div className="mt-auto flex flex-wrap gap-3 border-t border-hud-border pt-6">
         {[
           { icon: <Github size={18} />, label: 'GitHub', href: 'https://github.com/Zuri-1' },
-          { icon: <Linkedin size={18} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/sujay-tuladhar-1557793' },
-          { icon: <Mail size={18} />, label: 'Contact', href: 'https://www.linkedin.com/in/sujaytuladhar/' },
+          { icon: <Linkedin size={18} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/sujaytuladhar/' },
+          { icon: <Mail size={18} />, label: 'Contact', href: 'sujaytuladhar23@augustana.edu' },
           {
             icon: <FileDown size={18} />,
             label: 'Resume',
