@@ -61,7 +61,7 @@ export function Profile() {
         >
           {/* Outer glow frame */}
           <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-hud-accent/50 via-hud-accent/20 to-transparent blur-sm" />
-          
+
           {/* Main image container with border */}
           <div className="relative h-52 w-52 overflow-hidden rounded-xl border-2 border-hud-accent/60 lg:h-64 lg:w-64">
             {/* Corner accents */}
@@ -69,7 +69,7 @@ export function Profile() {
             <div className="absolute right-0 top-0 h-4 w-4 border-r-2 border-t-2 border-hud-accent" />
             <div className="absolute bottom-0 left-0 h-4 w-4 border-b-2 border-l-2 border-hud-accent" />
             <div className="absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-hud-accent" />
-            
+
             {/* Image */}
             <Image
               src="/images/profile.jpg"
@@ -78,11 +78,11 @@ export function Profile() {
               className="object-cover object-top"
               priority
             />
-            
+
             {/* Subtle overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </div>
-          
+
           {/* Status indicator */}
           <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-full bg-black border border-hud-accent/60 px-4 py-1.5 shadow-lg shadow-hud-accent/20">
             <span className="h-2 w-2 animate-pulse rounded-full bg-hud-accent" />
@@ -159,13 +159,19 @@ export function Profile() {
           { icon: <Github size={18} />, label: 'GitHub', href: 'https://github.com/Zuri-1' },
           { icon: <Linkedin size={18} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/sujay-tuladhar-1557793' },
           { icon: <Mail size={18} />, label: 'Contact', href: 'https://www.linkedin.com/in/sujaytuladhar/' },
-          { icon: <FileDown size={18} />, label: 'Resume', href: '#' },
+          {
+            icon: <FileDown size={18} />,
+            label: 'Resume',
+            href: '/resume/Portfolio_Resume.pdf',
+            download: true,
+          },
         ].map((action) => (
           <motion.a
             key={action.label}
             href={action.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            download={action.download}
+            target={action.download ? undefined : "_blank"}
+            rel={action.download ? undefined : "noopener noreferrer"}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="focus-ring btn-glow flex items-center gap-2 rounded-lg border border-hud-border bg-hud-bg-secondary px-4 py-2.5 font-[family-name:var(--font-terminal)] text-sm text-hud-text-dim transition-colors hover:text-hud-accent"
