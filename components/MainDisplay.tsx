@@ -14,21 +14,21 @@ interface MainDisplayProps {
 }
 
 const sectionComponents: Record<Section, React.ComponentType> = {
-  profile: Profile,
-  projects: Projects,
-  skills: Skills,
+  profile:    Profile,
+  projects:   Projects,
+  skills:     Skills,
   experience: Experience,
   activities: Activities,
-  stats: Stats,
+  stats:      Stats,
 }
 
 const sectionTitles: Record<Section, string> = {
-  profile: 'Profile',
-  projects: 'Projects',
-  skills: 'Skills',
-  experience: 'Experience',
-  activities: 'Activities',
-  stats: 'Stats',
+  profile:    'OPERATOR PROFILE',
+  projects:   'PROJECT LOG',
+  skills:     'TECH ARSENAL',
+  experience: 'FIELD RECORD',
+  activities: 'MISSION LOG',
+  stats:      'SYSTEM METRICS',
 }
 
 export function MainDisplay({ activeSection }: MainDisplayProps) {
@@ -36,35 +36,29 @@ export function MainDisplay({ activeSection }: MainDisplayProps) {
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      {/* Display Header */}
-      <div className="flex items-center justify-between border-b border-hud-border bg-hud-bg-secondary/30 px-4 py-3 backdrop-blur-sm lg:px-6">
-        <div className="flex items-center gap-3">
-          <div className="flex gap-1.5">
-            <div className="h-3 w-3 rounded-full bg-hud-danger/80" />
-            <div className="h-3 w-3 rounded-full bg-hud-warning/80" />
-            <div className="h-3 w-3 rounded-full bg-hud-accent/80" />
-          </div>
-          <span className="font-[family-name:var(--font-terminal)] text-sm text-hud-text">
+      {/* Display header */}
+      <div className="flex items-center justify-between border-b border-hud-accent/15 bg-black/60 px-4 py-2.5 backdrop-blur-sm lg:px-6">
+        <div className="flex items-center gap-3 font-[family-name:var(--font-terminal)]">
+          <span className="text-[10px] text-hud-text-dim/50">FILE:</span>
+          <span className="text-sm font-semibold tracking-widest text-hud-text">
             {sectionTitles[activeSection]}
           </span>
         </div>
-        <div className="flex items-center gap-2 font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
-          <span className="inline-flex items-center gap-1.5">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-hud-accent" />
-            Online
-          </span>
+        <div className="flex items-center gap-2 font-[family-name:var(--font-terminal)] text-xs">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-hud-accent" />
+          <span className="tracking-wider text-hud-accent/80">ONLINE</span>
         </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="relative flex-1 overflow-hidden">
+      {/* Content area with glitch-blur transitions */}
+      <div className="relative min-h-0 flex-1 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            initial={{ opacity: 0, x: 8, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, x: -8, filter: 'blur(6px)' }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
             className="absolute inset-0 overflow-auto"
           >
             <ActiveComponent />
@@ -72,15 +66,16 @@ export function MainDisplay({ activeSection }: MainDisplayProps) {
         </AnimatePresence>
       </div>
 
-      {/* Display Footer */}
-      <div className="flex items-center justify-between border-t border-hud-border bg-hud-bg-secondary/30 px-4 py-2 backdrop-blur-sm">
-        <div className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim">
-          <span className="text-hud-accent">Arrow keys</span> navigate
-          <span className="mx-2 text-hud-border">|</span>
-          <span className="text-hud-accent">Enter</span> select
+      {/* Display footer */}
+      <div className="flex items-center justify-between border-t border-hud-accent/15 bg-black/60 px-4 py-1.5 backdrop-blur-sm">
+        <div className="font-[family-name:var(--font-terminal)] text-[11px] text-hud-text-dim">
+          <span className="text-hud-accent">ARROW KEYS</span>
+          <span className="mx-2 text-hud-border">│</span>
+          <span className="text-hud-accent">ENTER</span>
+          <span className="ml-1.5">TO SELECT</span>
         </div>
-        <div className="font-[family-name:var(--font-terminal)] text-xs text-hud-text-dim/50">
-          Sujay Tuladhar
+        <div className="font-[family-name:var(--font-terminal)] text-[11px] tracking-widest text-hud-text-dim/40">
+          SUJAY TULADHAR
         </div>
       </div>
     </div>

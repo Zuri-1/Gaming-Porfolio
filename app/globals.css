@@ -273,3 +273,111 @@
 .progress-gradient {
   background: linear-gradient(90deg, var(--hud-accent) 0%, var(--hud-blue) 50%, var(--hud-purple) 100%);
 }
+
+/* ======== DIEGETIC HUD LAYER ======== */
+
+/* Scanlines overlay */
+.scanlines-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.13) 3px,
+    rgba(0, 0, 0, 0.13) 4px
+  );
+}
+
+/* Vignette overlay */
+.vignette-overlay {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.55) 82%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+}
+
+/* Animated grid background */
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
+}
+
+.hud-grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridScroll 28s linear infinite;
+}
+
+/* HUD nav button */
+.hud-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--hud-text-dim);
+  background: transparent;
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  text-align: left;
+}
+
+.hud-nav-btn:hover {
+  color: var(--hud-accent);
+  background: rgba(0, 212, 255, 0.05);
+  border-color: rgba(0, 212, 255, 0.15);
+  border-left-color: rgba(0, 212, 255, 0.6);
+}
+
+.hud-nav-btn.hud-nav-highlighted {
+  color: var(--hud-text);
+  background: rgba(0, 212, 255, 0.04);
+  border-left-color: rgba(0, 212, 255, 0.35);
+}
+
+.hud-nav-btn.hud-nav-active {
+  color: var(--hud-accent);
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.25);
+  border-left-color: var(--hud-accent);
+  box-shadow: inset 0 0 24px rgba(0, 212, 255, 0.04);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.45);
+}
+
+/* HUD top/bottom bar separator glow */
+.hud-bar-border-top {
+  border-top: 1px solid rgba(0, 212, 255, 0.18);
+  box-shadow: 0 -1px 0 rgba(0, 212, 255, 0.06);
+}
+
+.hud-bar-border-bottom {
+  border-bottom: 1px solid rgba(0, 212, 255, 0.18);
+  box-shadow: 0 1px 0 rgba(0, 212, 255, 0.06);
+}
+
+/* Viewport corner bracket accent */
+.hud-corner-tl {
+  border-left: 2px solid rgba(0, 212, 255, 0.45);
+  border-top: 2px solid rgba(0, 212, 255, 0.45);
+}
+.hud-corner-tr {
+  border-right: 2px solid rgba(0, 212, 255, 0.45);
+  border-top: 2px solid rgba(0, 212, 255, 0.45);
+}
+.hud-corner-bl {
+  border-left: 2px solid rgba(0, 212, 255, 0.45);
+  border-bottom: 2px solid rgba(0, 212, 255, 0.45);
+}
+.hud-corner-br {
+  border-right: 2px solid rgba(0, 212, 255, 0.45);
+  border-bottom: 2px solid rgba(0, 212, 255, 0.45);
+}
